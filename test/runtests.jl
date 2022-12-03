@@ -1,6 +1,9 @@
-using HMMER
-using Test
+using Test: @test, @testset
+import HMMER
+import Pfam
 
-@testset "HMMER.jl" begin
-    # Write your tests here.
-end
+dir = mktempdir()
+
+stk_file = Pfam.alignment_file("PF00013"; dir)
+out = HMMER.esl_reformat("afa", stk_file)
+@test isfile(out.o)

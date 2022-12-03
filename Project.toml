@@ -3,11 +3,8 @@ uuid = "59c5aa83-900c-4c4d-b6cc-c9bbbf32a260"
 authors = ["Jorge Fernandez-de-Cossio-Diaz <cossio@users.noreply.github.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+HMMER_jll = "9a00dd6d-eebd-547e-8f34-c9aea159fd8a"
+
 [compat]
 julia = "1.6"
-
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-
-[targets]
-test = ["Test"]

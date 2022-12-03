@@ -1,0 +1,6 @@
+[deps]
+Pfam = "275cd14a-065f-44bb-ab7a-e1328a0f1819"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+Pfam = "0.3"
