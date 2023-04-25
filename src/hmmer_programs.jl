@@ -40,3 +40,14 @@ function hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
 
     return (; process, stdout, stderr, o, A, tblout, domtblout)
 end
+
+function hmmfetch(hmmfile::AbstractString, key::AbstractString; wait=true)
+    cmd = `$(HMMER_jll.hmmfetch())`
+    stdout = tempname()
+    stderr = tempname()
+    o = tempname()
+    pipe = pipeline(`$cmd -o $o $hmmfile $key`; stdout, stderr, append=false)
+    process = run(pipe, wait=false)
+    wait && Base.wait(process)
+    return (; process, stdout, stderr, o)
+end

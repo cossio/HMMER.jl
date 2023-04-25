@@ -1,9 +1,10 @@
 using Test: @test, @testset
-import HMMER
 import Pfam
 
-dir = mktempdir()
+const PFAM_VERSION = "35.0"
+const PFAM_DIR = mktempdir()
 
-stk_file = Pfam.alignment_file("PF00013"; dir)
-out = HMMER.esl_reformat("afa", stk_file)
-@test isfile(out.o)
+@test isfile(Pfam.Pfam_A_hmm(; dir=PFAM_DIR, version=PFAM_VERSION))
+
+module hmmer_tests include("hmmer_programs.jl") end
+module easel_tests include("easel_miniapps.jl") end
