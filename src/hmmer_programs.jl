@@ -51,3 +51,14 @@ function hmmfetch(hmmfile::AbstractString, key::AbstractString; wait=true)
     wait && Base.wait(process)
     return (; process, stdout, stderr, o)
 end
+
+function hmmalign(hmmfile::AbstractString, seqfile::AbstractString; wait=true)
+    cmd = `$(HMMER_jll.hmmalign())`
+    stdout = tempname()
+    stderr = tempname()
+    o = tempname()
+    pipe = pipeline(`$cmd -o $o $hmmfile $seqfile`; stdout, stderr, append=false)
+    process = run(pipe, wait=false)
+    wait && Base.wait(process)
+    return (; process, stdout, stderr, o)
+end
