@@ -41,7 +41,7 @@ function hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
     return (; process, stdout, stderr, o, A, tblout, domtblout)
 end
 
-function hmmfetch(hmmfile::AbstractString, key::AbstractString; wait=true)
+function hmmfetch(hmmfile, key; wait=true)
     cmd = `$(HMMER_jll.hmmfetch())`
     stdout = tempname()
     stderr = tempname()
@@ -52,7 +52,7 @@ function hmmfetch(hmmfile::AbstractString, key::AbstractString; wait=true)
     return (; process, stdout, stderr, o)
 end
 
-function hmmalign(hmmfile::AbstractString, seqfile::AbstractString; wait=true)
+function hmmalign(hmmfile, seqfile; wait=true)
     cmd = `$(HMMER_jll.hmmalign())`
     stdout = tempname()
     stderr = tempname()
