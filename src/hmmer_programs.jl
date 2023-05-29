@@ -55,8 +55,8 @@ end
 function hmmalign(
     hmmfile, seqfile;
     wait=true,
-    informat::Opt{AbstractString}=nothing,
-    outformat::Opt{AbstractString}=nothing
+    informat=nothing,
+    outformat=nothing
 )
     cmd = `$(HMMER_jll.hmmalign())`
     isnothing(informat) || (cmd = `$cmd --informat $informat`)

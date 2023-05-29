@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## v1.1.0
 
+- informat, outformat options of hmmalign.
+
+## v1.1.0
+
 - Remove type annotations.
 
 ## v1.0.0
