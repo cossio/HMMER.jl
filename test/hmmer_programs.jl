@@ -29,7 +29,7 @@ end
     hmm = hmmfetch(pfam_hmm, "PF00397.29").o
     aln = hmmalign(hmm, hu2004_fasta; outformat="afa")
 
-    # load aligned sequences
+    # load aligned sequences from aln.o output file
     aligned_sequences = String[]
     FASTX.FASTA.Reader(open(aln.o)) do reader
         for record in reader
@@ -39,6 +39,3 @@ end
 
     @test all(length.(aligned_sequences) .== 31)
 end
-
-# PFAM_DIR = "/DATA-SSD/cossio/data/Pfam"
-# PFAM_VERSION = "35.0"
