@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## Unreleased
 
-## v1.1.0
+## v1.2.0
 
 - informat, outformat options of hmmalign.
 
