@@ -1,0 +1,7 @@
+[20230425_WW_Hu_2004]
+git-tree-sha1 = "7c0ef1865c57740f0e308539bc913147d2eba5f4"
+lazy=true
+
+    [[20230425_WW_Hu_2004.download]]
+    sha256 = "3259acb898bf0d36a892658dae1b44cfb8643242c1c8afc0726c68a4b2048afc"
+    url = "https://gist.github.com/cossio/aa175ae61254c6beb73c810acba6ac95/raw/7c0ef1865c57740f0e308539bc913147d2eba5f4.tar.gz"

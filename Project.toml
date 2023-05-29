@@ -5,7 +5,8 @@ version = "1.1.1"
 
 [deps]
 HMMER_jll = "9a00dd6d-eebd-547e-8f34-c9aea159fd8a"
+LazyArtifacts = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
 
 [compat]
-julia = "1.6"
 HMMER_jll = "3"
+julia = "1.6"
