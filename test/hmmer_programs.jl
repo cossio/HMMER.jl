@@ -6,7 +6,7 @@ import FASTX
 using Test: @test, @testset
 using HMMER: hmmfetch, hmmalign
 using HMMER._Testing: Hu2004_sequences_path
-using DataFrames: DataFrames
+using DataFrames: DataFrame
 
 @testset "hmmfetch" begin
     pfam_hmm = Pfam.Pfam_A_hmm(; dir=PFAM_DIR, version=PFAM_VERSION)
