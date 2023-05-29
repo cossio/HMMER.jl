@@ -52,8 +52,16 @@ function hmmfetch(hmmfile, key; wait=true)
     return (; process, stdout, stderr, o)
 end
 
-function hmmalign(hmmfile, seqfile; wait=true)
+function hmmalign(
+    hmmfile, seqfile;
+    wait=true,
+    informat::Opt{AbstractString}=nothing,
+    outformat::Opt{AbstractString}=nothing
+)
     cmd = `$(HMMER_jll.hmmalign())`
+    isnothing(informat) || (cmd = `$cmd --informat $informat`)
+    isnothing(outformat) || (cmd = `$cmd --outformat $outformat`)
+
     stdout = tempname()
     stderr = tempname()
     o = tempname()
