@@ -1,5 +1,6 @@
 function hmmbuild(msafile; wait=true, n=nothing, amino=false, dna=false, rna=false)
-    cmd = `$(HMMER_jll.hmmbuild())`
+    #cmd = `$(HMMER_jll.hmmbuild())`
+    cmd = hmmer_cmd("hmmbuild")
 
     stdout = tempname()
     stderr = tempname()
@@ -21,7 +22,8 @@ function hmmbuild(msafile; wait=true, n=nothing, amino=false, dna=false, rna=fal
 end
 
 function hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
-    cmd = `$(HMMER_jll.hmmsearch())`
+    #cmd = `$(HMMER_jll.hmmsearch())`
+    cmd = hmmer_cmd("hmmsearch")
 
     stdout = tempname()
     stderr = tempname()
@@ -42,7 +44,8 @@ function hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
 end
 
 function hmmfetch(hmmfile, key; wait=true)
-    cmd = `$(HMMER_jll.hmmfetch())`
+    #cmd = `$(HMMER_jll.hmmfetch())`
+    cmd = hmmer_cmd("hmmfetch")
     stdout = tempname()
     stderr = tempname()
     o = tempname()
@@ -58,7 +61,8 @@ function hmmalign(
     informat=nothing,
     outformat=nothing
 )
-    cmd = `$(HMMER_jll.hmmalign())`
+    #cmd = `$(HMMER_jll.hmmalign())`
+    cmd = hmmer_cmd("hmmalign")
     isnothing(informat) || (cmd = `$cmd --informat $informat`)
     isnothing(outformat) || (cmd = `$cmd --outformat $outformat`)
 

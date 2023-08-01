@@ -1,3 +1,33 @@
+[[hmmer]]
+arch = "x86_64"
+git-tree-sha1 = "d724ece5768a480f075a28ecfb6016901cb758e8"
+os = "macos"
+
+    [[hmmer.download]]
+    sha256 = "ea5331caf971c0b5bd3844a8424677aa2af224bbf64426aec52992b890541d9a"
+    url = "https://gist.github.com/cossio/e09663bc76273e050f3711c9d6190e87/raw/d724ece5768a480f075a28ecfb6016901cb758e8.tar.gz"
+
+
+[[hmmer]]
+arch = "arm64"
+git-tree-sha1 = "d724ece5768a480f075a28ecfb6016901cb758e8"
+os = "macos"
+
+    [[hmmer.download]]
+    sha256 = "ea5331caf971c0b5bd3844a8424677aa2af224bbf64426aec52992b890541d9a"
+    url = "https://gist.github.com/cossio/e09663bc76273e050f3711c9d6190e87/raw/d724ece5768a480f075a28ecfb6016901cb758e8.tar.gz"
+
+
+[[hmmer]]
+arch = "x86_64"
+git-tree-sha1 = "64931e6af027be1954deae397497b2002d29b7c4"
+os = "linux"
+
+    [[hmmer.download]]
+    sha256 = "45d72eb08610d72e53a4736936d4351693430f42fd279f69fa2f68f5bdbe0637"
+    url = "https://gist.github.com/cossio/d3b3e8b228049e5ee345159e7ab8d8e4/raw/64931e6af027be1954deae397497b2002d29b7c4.tar.gz"
+
+
 [20230425_WW_Hu_2004]
 git-tree-sha1 = "7c0ef1865c57740f0e308539bc913147d2eba5f4"
 lazy=true

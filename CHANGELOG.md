@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## Unreleased
 
+- We are now using pre-compiled artifacts (see `compilation.md`) to provide the `hmmer` and `easel` binaries.
+- Now using HMMER 3.3.2.
+- Support macOS with Apple Silicon, through Rosetta.
+
 ## v1.2.0
 
 - informat, outformat options of hmmalign.
