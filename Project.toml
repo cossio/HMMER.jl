@@ -1,7 +1,7 @@
 name = "HMMER"
 uuid = "59c5aa83-900c-4c4d-b6cc-c9bbbf32a260"
 authors = ["Jorge Fernandez-de-Cossio-Diaz <cossio@users.noreply.github.com> and contributors"]
-version = "1.3.0-DEV"
+version = "1.3.0"
 
 [deps]
 Gzip_jll = "be1be57a-8558-53c3-a7e5-50095f79957e"
