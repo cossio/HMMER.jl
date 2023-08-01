@@ -1,5 +1,4 @@
 function esl_reformat(format, seqfile; informat=nothing, wait=true)
-    #cmd = `$(HMMER_jll.esl_reformat())`
     cmd = hmmer_cmd("esl-reformat")
 
     isnothing(informat) || (cmd = `$cmd --informat $informat`)

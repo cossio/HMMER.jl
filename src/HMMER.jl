@@ -1,6 +1,5 @@
 module HMMER
 
-# import HMMER_jll
 using LazyArtifacts: LazyArtifacts, @artifact_str
 
 include("util.jl")
