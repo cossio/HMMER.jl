@@ -1,4 +1,7 @@
 {
     "image":"mcr.microsoft.com/devcontainers/universal:2",
-    "postCreateCommand": "bash .devcontainer/install-dev-tools.sh"
+    "postCreateCommand": "bash .devcontainer/install-dev-tools.sh",
+    "features": {
+        "ghcr.io/julialang/devcontainer-features/julia": {}
+    }
 }
