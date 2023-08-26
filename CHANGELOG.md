@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file. The format 
 
 ## Unreleased
 
+- Now using HMMER v3.4 (released on 2023-08-15).
+- HMMER v3.4 now supports Apple Silicon natively. This package now uses a native binaries (so we are no longer using Rosetta).
+
 ## 1.3.1
 
 - Remove unused `HMMER_jll` dependency.
