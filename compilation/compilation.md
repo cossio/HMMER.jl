@@ -1,5 +1,7 @@
 # Compilation of hmmer
 
+**UPDATE 2023-08-31.** Since v1.4.0, we are using `HMMER_jll`. This note is no longer needed.
+
 We download the source from http://hmmer.org. At the time of writing the latest version is 3.4.
 
 ```bash

@@ -1,4 +1,5 @@
 # Internal module used in tests
+# Loading artifacts is tricky in tests, so we declare the artifact here instead.
 module _Testing
 
 using LazyArtifacts: LazyArtifacts, @artifact_str

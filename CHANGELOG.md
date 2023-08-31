@@ -2,10 +2,9 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 1.4.0
 
-- Now using HMMER v3.4 (released on 2023-08-15).
-- HMMER v3.4 now supports Apple Silicon natively. This package now uses a native binaries (so we are no longer using Rosetta).
+- Now using HMMER v3.4 (released on 2023-08-15), through `HMMER_jll`. HMMER v3.4 now supports Apple Silicon natively, so we are no longer using Rosetta.
 
 ## 1.3.1
 

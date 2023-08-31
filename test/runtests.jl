@@ -6,5 +6,6 @@ const PFAM_DIR = mktempdir()
 
 @test isfile(Pfam.Pfam_A_hmm(; dir=PFAM_DIR, version=PFAM_VERSION))
 
+module aqua_tests include("aqua.jl") end
 module hmmer_tests include("hmmer_programs.jl") end
 module easel_tests include("easel_miniapps.jl") end

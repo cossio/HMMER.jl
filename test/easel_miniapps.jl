@@ -1,5 +1,5 @@
-using Test: @test, @testset
 import ..PFAM_VERSION, ..PFAM_DIR
+using Test: @test, @testset
 using Pfam: alignment_file
 using HMMER: esl_reformat
 

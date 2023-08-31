@@ -2,7 +2,6 @@ import ..PFAM_VERSION, ..PFAM_DIR
 import Pfam
 import CSV
 import FASTX
-
 using Test: @test, @testset
 using HMMER: hmmfetch, hmmalign
 using HMMER._Testing: Hu2004_sequences_path
