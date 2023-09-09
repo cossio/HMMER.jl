@@ -1,6 +1,6 @@
 name = "HMMER"
 uuid = "59c5aa83-900c-4c4d-b6cc-c9bbbf32a260"
-authors = ["JFdCD <jfdecd@icloud.com> and contributors"]
+authors = ["JFdCD <jfdecd@icloud.com>"]
 version = "1.4.1-DEV"
 
 [deps]
