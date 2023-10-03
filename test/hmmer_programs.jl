@@ -1,4 +1,3 @@
-import ..PFAM_VERSION, ..PFAM_DIR
 import Pfam
 import CSV
 import FASTX
@@ -8,7 +7,7 @@ using HMMER._Testing: Hu2004_sequences_path
 using DataFrames: DataFrame
 
 @testset "hmmfetch" begin
-    pfam_hmm = Pfam.Pfam_A_hmm(; dir=PFAM_DIR, version=PFAM_VERSION)
+    pfam_hmm = Pfam.Pfam_A_hmm()
     @test isfile(hmmfetch(pfam_hmm, "PF00397.29").o)
 end
 
@@ -24,7 +23,7 @@ end
     end
 
     # align
-    pfam_hmm = Pfam.Pfam_A_hmm(; dir=PFAM_DIR, version=PFAM_VERSION)
+    pfam_hmm = Pfam.Pfam_A_hmm()
     hmm = hmmfetch(pfam_hmm, "PF00397.29").o
     aln = hmmalign(hmm, hu2004_fasta; outformat="afa")
 

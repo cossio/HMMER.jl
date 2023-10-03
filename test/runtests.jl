@@ -1,10 +1,10 @@
 using Test: @test, @testset
 import Pfam
 
-const PFAM_VERSION = "35.0"
-const PFAM_DIR = mktempdir()
+Pfam.set_pfam_directory(mktempdir())
+Pfam.set_pfam_version("35.0")
 
-@test isfile(Pfam.Pfam_A_hmm(; dir=PFAM_DIR, version=PFAM_VERSION))
+@test isfile(Pfam.Pfam_A_hmm())
 
 module aqua_tests include("aqua.jl") end
 module hmmer_tests include("hmmer_programs.jl") end
