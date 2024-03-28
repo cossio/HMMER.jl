@@ -1,7 +1,24 @@
 {
-    "image":"mcr.microsoft.com/devcontainers/universal:2",
-    "postCreateCommand": "bash .devcontainer/install-dev-tools.sh",
-    "features": {
-        "ghcr.io/julialang/devcontainer-features/julia": {}
-    }
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"configureZshAsDefaultShell": true,
+			"nonFreePackages": true
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"github.vscode-github-actions",
+				"tamasfe.even-better-toml",
+				"julialang.language-julia"
+			]
+		}
+	},
+	"mounts": [
+		"source=${localEnv:MY_DEVCONTAINERS_SECRETS_DIR},target=/home/vscode/secrets,type=bind,ro,consistency=cached"
+	],
+	"onCreateCommand": "bash .devcontainer/onCreate.sh",
+	"postCreateCommand": "bash .devcontainer/postCreate.sh"
 }

@@ -1,7 +1,7 @@
 name = "HMMER"
 uuid = "59c5aa83-900c-4c4d-b6cc-c9bbbf32a260"
 authors = ["JFdCD <jfdecd@icloud.com>"]
-version = "1.5.0"
+version = "1.5.1-DEV"
 
 [deps]
 HMMER_jll = "9a00dd6d-eebd-547e-8f34-c9aea159fd8a"
