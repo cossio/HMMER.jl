@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## 1.5.1
 
-- Fix GSL dependency issue. See https://github.com/JuliaPackaging/Yggdrasil/issues/5283#issuecomment-2887756631.
+- [f3f6d92](https://github.com/cossio/HMMER.jl/commit/f3f6d92c177e44af10ad8358555950f672a4d495). Fix GSL dependency issue. See [this comment](https://github.com/JuliaPackaging/Yggdrasil/issues/5283#issuecomment-2887756631).
 
 ## 1.4.0
 
