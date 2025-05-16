@@ -2,7 +2,7 @@
 
 julia_version = "1.11.5"
 manifest_format = "2.0"
-project_hash = "f86c5728fb15dfc06662c2146fe8413e3c94e60a"
+project_hash = "3b3f8041805224e4137a1c42fedb58a9a19f1779"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -31,10 +31,10 @@ uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
 version = "1.11.0"
 
 [[deps.GSL_jll]]
-deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "7da3a878517e1420850569d35d9ba583b745e39d"
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "56f1e2c9e083e0bb7cf9a7055c280beb08a924c0"
 uuid = "1b77fbbe-d8ee-58f0-85f9-836ddc23a7a4"
-version = "2.8.1+0"
+version = "2.7.2+0"
 
 [[deps.HMMER_jll]]
 deps = ["Artifacts", "GSL_jll", "JLLWrappers", "Libdl"]
