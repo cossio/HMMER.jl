@@ -1,5 +1,6 @@
-using Test: @test, @testset
 import Pfam
+using Test: @test
+using Test: @testset
 
 Pfam.set_pfam_directory(mktempdir())
 Pfam.set_pfam_version("35.0")
