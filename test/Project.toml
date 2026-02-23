@@ -3,6 +3,7 @@ Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 FASTX = "c2308a5c-f048-11e8-3e8a-31650f418d12"
+HMMER = "59c5aa83-900c-4c4d-b6cc-c9bbbf32a260"
 Pfam = "275cd14a-065f-44bb-ab7a-e1328a0f1819"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
