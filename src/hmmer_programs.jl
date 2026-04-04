@@ -5,7 +5,8 @@ Build an HMM profile from a multiple-sequence alignment file with `hmmbuild`.
 
 `msafile` is passed directly to the HMMER executable. The returned named tuple
 contains the spawned `process`, captured `stdout` and `stderr`, and the output
-paths `hmmout`, `o`, and `O` created by the command.
+paths `hmmout`, `o`, and `O`. These output files are guaranteed to exist and be
+complete once the process finishes (or immediately on return when `wait=true`).
 
 Keyword arguments mirror the corresponding command-line options:
 - `n`: set the model name
@@ -40,7 +41,9 @@ end
 Search a sequence database with an HMM profile using `hmmsearch`.
 
 The returned named tuple contains the spawned `process`, captured `stdout` and
-`stderr`, and the output paths `o`, `A`, `tblout`, and `domtblout`.
+`stderr`, and the output paths `o`, `A`, `tblout`, and `domtblout`. These
+outputs are guaranteed to exist and be complete once the process finishes (or
+immediately on return when `wait=true`).
 
 Keyword arguments mirror the corresponding command-line options:
 - `Z`: set the database size for E-value calculations
@@ -75,7 +78,9 @@ end
 Fetch a single profile named `key` from an HMM database with `hmmfetch`.
 
 The returned named tuple contains the spawned `process`, captured `stdout` and
-`stderr`, and the fetched-profile output path `o`.
+`stderr`, and the fetched-profile output path `o`. The output file is
+guaranteed to exist and be complete once the process finishes (or immediately
+on return when `wait=true`).
 """
 function hmmfetch(hmmfile, key; wait=true)
     cmd = `$(HMMER_jll.hmmfetch())`
@@ -95,7 +100,9 @@ Align sequences in `seqfile` against the profile HMM in `hmmfile` with
 `hmmalign`.
 
 The returned named tuple contains the spawned `process`, captured `stdout` and
-`stderr`, and the alignment output path `o`.
+`stderr`, and the alignment output path `o`. The output file is guaranteed to
+exist and be complete once the process finishes (or immediately on return when
+`wait=true`).
 
 Keyword arguments mirror the corresponding command-line options:
 - `informat`: specify the input sequence format
