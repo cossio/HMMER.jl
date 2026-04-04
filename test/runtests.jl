@@ -1,10 +1,6 @@
-import Pfam
-using Test: @test, @testset
+using Test: @testset
 
-Pfam.set_pfam_directory(mktempdir())
-Pfam.set_pfam_version("35.0")
-
-@test isfile(Pfam.Pfam_A_hmm())
+include("fixtures.jl")
 
 module aqua_tests include("aqua.jl") end
 module hmmer_tests include("hmmer_programs.jl") end
