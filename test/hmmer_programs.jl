@@ -1,39 +1,70 @@
-import Pfam
-import CSV
-import FASTX
 using Test: @test, @testset
-using HMMER: hmmfetch, hmmalign
-using HMMER._Testing: Hu2004_sequences_path
-using DataFrames: DataFrame
+using HMMER: hmmalign, hmmbuild, hmmfetch, hmmsearch
+using Main.HMMERTestFixtures: normalized_alignment_sequences, write_test_alignment, write_test_fasta
+
+function build_test_hmm(; wait=true)
+    return hmmbuild(write_test_alignment(); wait, n="tiny", amino=true)
+end
+
+@testset "hmmbuild" begin
+    build = build_test_hmm(wait=false)
+
+    @test process_running(build.process)
+    wait(build.process)
+    @test success(build.process)
+
+    @test all(isfile, (build.stdout, build.stderr, build.hmmout, build.o, build.O))
+
+    summary = read(build.o, String)
+    @test occursin("name (the single) HMM:            tiny", summary)
+    @test occursin("input alignment is asserted as:   protein", summary)
+end
+
+@testset "hmmsearch" begin
+    build = build_test_hmm()
+    seqdb = write_test_fasta()
+    search = hmmsearch(build.hmmout, seqdb; wait=false, Z=3, E=1000.0, cpu=1)
+
+    @test process_running(search.process)
+    wait(search.process)
+    @test success(search.process)
+
+    @test all(isfile, (search.stdout, search.stderr, search.o, search.A, search.tblout, search.domtblout))
+
+    tblout = read(search.tblout, String)
+    @test occursin("hit1", tblout)
+    @test occursin("hit2", tblout)
+    @test !occursin("miss", tblout)
+    @test occursin("-E 1000.0", tblout)
+    @test occursin("-Z 3", tblout)
+    @test occursin("--cpu 1", tblout)
+end
 
 @testset "hmmfetch" begin
-    pfam_hmm = Pfam.Pfam_A_hmm()
-    @test isfile(hmmfetch(pfam_hmm, "PF00397.29").o)
+    build = build_test_hmm()
+    fetch = hmmfetch(build.hmmout, "tiny"; wait=false)
+
+    @test process_running(fetch.process)
+    wait(fetch.process)
+    @test success(fetch.process)
+
+    @test all(isfile, (fetch.stdout, fetch.stderr, fetch.o))
+    @test occursin("NAME  tiny", read(fetch.o, String))
 end
 
 @testset "hmmalign" begin
-    hu2004_sequences = DataFrame(CSV.File(Hu2004_sequences_path(), delim='\t')).WW
+    build = build_test_hmm()
+    seqdb = write_test_fasta()
+    aln = hmmalign(build.hmmout, seqdb; wait=false, informat="fasta", outformat="afa")
 
-    # prepare FASTA
-    hu2004_fasta = tempname()
-    FASTX.FASTA.Writer(open(hu2004_fasta, "w")) do writer
-        for (i, seq) in enumerate(hu2004_sequences)
-            write(writer, FASTX.FASTA.Record(string(i), seq))
-        end
-    end
+    @test process_running(aln.process)
+    wait(aln.process)
+    @test success(aln.process)
 
-    # align
-    pfam_hmm = Pfam.Pfam_A_hmm()
-    hmm = hmmfetch(pfam_hmm, "PF00397.29").o
-    aln = hmmalign(hmm, hu2004_fasta; outformat="afa")
+    @test all(isfile, (aln.stdout, aln.stderr, aln.o))
 
-    # load aligned sequences from aln.o output file
-    aligned_sequences = String[]
-    FASTX.FASTA.Reader(open(aln.o)) do reader
-        for record in reader
-            push!(aligned_sequences, filter(c -> !islowercase(c) && c != '.', FASTX.sequence(record)))
-        end
-    end
-
-    @test all(length.(aligned_sequences) .== 31)
+    aligned_sequences = normalized_alignment_sequences(aln.o)
+    @test aligned_sequences["hit1"] == "ACDEFGHIK"
+    @test aligned_sequences["hit2"] == "ACDEWGHIK"
+    @test aligned_sequences["miss"] == "T"
 end
