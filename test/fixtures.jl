@@ -41,11 +41,13 @@ function fasta_sequences(path)
     return sequences
 end
 
+is_alignment_position(c) = !islowercase(c) && c != '.' && c != '-'
+
 function normalized_alignment_sequences(path)
     sequences = Dict{String,String}()
     FASTX.FASTA.Reader(open(path)) do reader
         for record in reader
-            cleaned = filter(c -> !islowercase(c) && c != '.' && c != '-', FASTX.sequence(record))
+            cleaned = filter(is_alignment_position, FASTX.sequence(record))
             sequences[String(FASTX.identifier(record))] = String(cleaned)
         end
     end
