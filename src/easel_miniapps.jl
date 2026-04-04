@@ -1,3 +1,16 @@
+"""
+    esl_reformat(format, seqfile; informat=nothing, wait=true)
+
+Convert a sequence or alignment file to another format with `esl-reformat`.
+
+`format` is the Easel output format name and `seqfile` is the input file. The
+returned named tuple contains the spawned `process`, captured `stdout` and
+`stderr`, and the reformatted output path `o`.
+
+Keyword arguments mirror the corresponding command-line options:
+- `informat`: specify the input format explicitly
+- `wait`: when `true`, wait for the process to finish before returning
+"""
 function esl_reformat(format, seqfile; informat=nothing, wait=true)
     cmd = `$(HMMER_jll.esl_reformat())`
 

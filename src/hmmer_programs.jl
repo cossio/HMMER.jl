@@ -1,3 +1,17 @@
+"""
+    hmmbuild(msafile; wait=true, n=nothing, amino=false, dna=false, rna=false)
+
+Build an HMM profile from a multiple-sequence alignment file with `hmmbuild`.
+
+`msafile` is passed directly to the HMMER executable. The returned named tuple
+contains the spawned `process`, captured `stdout` and `stderr`, and the output
+paths `hmmout`, `o`, and `O` created by the command.
+
+Keyword arguments mirror the corresponding command-line options:
+- `n`: set the model name
+- `amino`, `dna`, `rna`: force the alphabet
+- `wait`: when `true`, wait for the process to finish before returning
+"""
 function hmmbuild(msafile; wait=true, n=nothing, amino=false, dna=false, rna=false)
     cmd = `$(HMMER_jll.hmmbuild())`
 
@@ -20,6 +34,20 @@ function hmmbuild(msafile; wait=true, n=nothing, amino=false, dna=false, rna=fal
     return (; process, stdout, stderr, hmmout, o, O)
 end
 
+"""
+    hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
+
+Search a sequence database with an HMM profile using `hmmsearch`.
+
+The returned named tuple contains the spawned `process`, captured `stdout` and
+`stderr`, and the output paths `o`, `A`, `tblout`, and `domtblout`.
+
+Keyword arguments mirror the corresponding command-line options:
+- `Z`: set the database size for E-value calculations
+- `E`: set the reporting threshold
+- `cpu`: choose the number of worker threads used by HMMER
+- `wait`: when `true`, wait for the process to finish before returning
+"""
 function hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
     cmd = `$(HMMER_jll.hmmsearch())`
 
@@ -41,6 +69,14 @@ function hmmsearch(hmmfile, seqdb; wait=true, Z=nothing, E=nothing, cpu=nothing)
     return (; process, stdout, stderr, o, A, tblout, domtblout)
 end
 
+"""
+    hmmfetch(hmmfile, key; wait=true)
+
+Fetch a single profile named `key` from an HMM database with `hmmfetch`.
+
+The returned named tuple contains the spawned `process`, captured `stdout` and
+`stderr`, and the fetched-profile output path `o`.
+"""
 function hmmfetch(hmmfile, key; wait=true)
     cmd = `$(HMMER_jll.hmmfetch())`
     stdout = tempname()
@@ -52,6 +88,20 @@ function hmmfetch(hmmfile, key; wait=true)
     return (; process, stdout, stderr, o)
 end
 
+"""
+    hmmalign(hmmfile, seqfile; wait=true, informat=nothing, outformat=nothing)
+
+Align sequences in `seqfile` against the profile HMM in `hmmfile` with
+`hmmalign`.
+
+The returned named tuple contains the spawned `process`, captured `stdout` and
+`stderr`, and the alignment output path `o`.
+
+Keyword arguments mirror the corresponding command-line options:
+- `informat`: specify the input sequence format
+- `outformat`: specify the alignment output format
+- `wait`: when `true`, wait for the process to finish before returning
+"""
 function hmmalign(
     hmmfile, seqfile;
     wait=true,
