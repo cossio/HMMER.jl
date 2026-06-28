@@ -2,5 +2,9 @@
 *.jl.cov
 *.jl.mem
 /docs/build/
+/docs/site/
+docs/Manifest.toml
+# files generated automatically by Literate.jl
+docs/src/literate/*.md
 .vscode
 test/LocalPreferences.toml
