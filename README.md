@@ -1,5 +1,8 @@
 # HMMER.jl
 
+[![Documentation (stable)](https://img.shields.io/badge/docs-stable-blue.svg)](https://cossio.github.io/HMMER.jl/stable)
+[![Documentation (dev)](https://img.shields.io/badge/docs-dev-blue.svg)](https://cossio.github.io/HMMER.jl/dev)
+
 A thin Julia wrapper of [hmmer](http://hmmer.org). Functions have the same name as the HMMER programs (and Easel miniapps). Keyword arguments are named consistently with the command line arguments of the respective programs. The package creates temporary files for output and returns the path.
 
 ## Installation
