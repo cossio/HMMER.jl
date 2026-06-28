@@ -15,15 +15,7 @@ import HMMER
 # the amino-acid alphabet and `n` sets the model name.
 
 alignment = tempname()
-write(
-    alignment,
-    """
-    # STOCKHOLM 1.0
-    seq1 ACDEFGHIK
-    seq2 ACDEYGHIK
-    //
-    """,
-)
+write(alignment, "# STOCKHOLM 1.0\nseq1 ACDEFGHIK\nseq2 ACDEYGHIK\n//\n")
 
 model = HMMER.hmmbuild(alignment; amino=true, n="toy_profile")
 
@@ -39,15 +31,7 @@ print(read(model.o, String))
 # `hits.tblout`.
 
 seqdb = tempname()
-write(
-    seqdb,
-    """
-    >match
-    ACDEFGHIK
-    >nonmatch
-    TTTTTTTTT
-    """,
-)
+write(seqdb, ">match\nACDEFGHIK\n>nonmatch\nTTTTTTTTT\n")
 
 hits = HMMER.hmmsearch(model.hmmout, seqdb)
 
@@ -66,15 +50,7 @@ profile = HMMER.hmmfetch(model.hmmout, "toy_profile")
 # the profile fetched above and request aligned FASTA output via `outformat`.
 
 seqfile = tempname()
-write(
-    seqfile,
-    """
-    >seq1
-    ACDEFGHIK
-    >seq2
-    ACDEYGHIK
-    """,
-)
+write(seqfile, ">seq1\nACDEFGHIK\n>seq2\nACDEYGHIK\n")
 
 aligned = HMMER.hmmalign(profile.o, seqfile; outformat="afa")
 
@@ -86,15 +62,7 @@ print(read(aligned.o, String))
 # another format. Here we convert a Stockholm alignment to aligned FASTA.
 
 stockholm = tempname()
-write(
-    stockholm,
-    """
-    # STOCKHOLM 1.0
-    seq1 ACDE
-    seq2 AC-E
-    //
-    """,
-)
+write(stockholm, "# STOCKHOLM 1.0\nseq1 ACDE\nseq2 AC-E\n//\n")
 
 fasta = HMMER.esl_reformat("afa", stockholm)
 
