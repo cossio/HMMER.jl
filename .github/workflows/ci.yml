@@ -22,3 +22,35 @@ jobs:
       - uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
       - uses: julia-actions/julia-buildpkg@e3eb439fad4f9aba7da2667e7510e4a46ebc46e1 # v1.7.0
       - uses: julia-actions/julia-runtest@6e050c8013b833b1195105ff2fce9cd802f53271 # v1.12.0
+
+  # Exercises the *low* end of every [compat] range. julia-downgrade-compat
+  # resolves each direct dependency of the root and test/ projects to the
+  # lowest version its compat entry admits and writes that as the manifest;
+  # the tests then run against it and fail if a compat lower bound is stale.
+  # `version: 'min'` runs on the lower bound of the julia compat entry too.
+  #
+  # Required for merging alongside the test job above (see
+  # dependabot-auto-merge.yml), so keep the job name stable.
+  downgrade:
+    name: Downgrade compat (Julia min)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3.0.2
+        with:
+          version: 'min'
+      - uses: julia-actions/cache@a7bed9df697e5d7309d68afe7542a87621a8b6c8 # v3.3.0
+      - uses: julia-actions/julia-downgrade-compat@30b83cf94e89744fcbd7ea5496be4967d6fbe540 # v2.7.0
+        with:
+          # Root and test projects are resolved together so the minimal
+          # versions of both are mutually compatible.
+          projects: '.,test'
+          # Direct dependencies only; transitive minimums are not ours to fix.
+          mode: deps
+      - uses: julia-actions/julia-buildpkg@e3eb439fad4f9aba7da2667e7510e4a46ebc46e1 # v1.7.0
+      - uses: julia-actions/julia-runtest@6e050c8013b833b1195105ff2fce9cd802f53271 # v1.12.0
+        with:
+          # Keep the downgraded manifest: never re-resolve, and never let a
+          # Dependabot PR flip the default 'auto' to latest-compatible.
+          allow_reresolve: false
+          force_latest_compatible_version: false
